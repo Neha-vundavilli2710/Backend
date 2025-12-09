@@ -19,7 +19,7 @@ app.post('/add-user', (req,res) => {
  
 // put
 app.put('/update-user',(req,res)=>{
-    let mydata =req.body;
+    let mydata =req.body; 
     console.log(mydata);
     //logic to update data in your database
     res.send("data updated");
