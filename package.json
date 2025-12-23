@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Neha-vundavilli2710/Backend#readme",
   "dependencies": {
     "body-parser": "^2.2.1",
+    "cors": "^2.8.5",
     "express": "^5.2.1"
   }
 }
