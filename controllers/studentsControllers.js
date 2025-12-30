@@ -42,28 +42,41 @@
 
 import student from "../modules/studentsModels.js";
 
-const getStudentsDetails = async(req, res) => {
-    try{
-            // const mydata = await student.find();
-            // const mydata = await student.findOne();
-            const mydata = await student.findById({_id: "694b80caf0cee6258678668e"})
-            res.status(200).json(mydata);
-    }catch(error){
-        console.log(error);
-        res.status(500).json({error: error.message})
+const getStudentsDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id) {
+      const studentDoc = await student.findById(id);
+      if (!studentDoc) {
+        return res.status(404).json({ error: "Student not found" });
+      }
+      return res.status(200).json({ data: studentDoc });
     }
 
+    const students = await student.find();
+    return res.status(200).json({ data: students });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
+  }
 };
-const addStudents = async(req, res) => {
-    try{
-         const data = req.body;
-    console.log(data);
-    // const addeddata = await student.create(data);
-    const addeddata = await student.insertMany(data);
-    console.log(addeddata);
-    res.status(201).json("data added");
-    }catch(error){
-        res.status(500).json({error: error.message}) 
+
+const addStudents = async (req, res) => {
+  try {
+    const data = req.body;
+
+    if (!data || (typeof data === "object" && Object.keys(data).length === 0)) {
+      return res.status(400).json({ error: "Request body is empty" });
     }
-}; 
-export {getStudentsDetails, addStudents}; 
+
+    const addedData = Array.isArray(data) ? await student.insertMany(data) : await student.create(data);
+
+    return res.status(201).json({ message: "Data added", data: addedData });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export { getStudentsDetails, addStudents }; 
