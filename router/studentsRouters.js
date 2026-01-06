@@ -7,4 +7,4 @@ router.get('/students', getStudentsDetails);
 router.get('/students/:id', getStudentsDetails);
 router.post('/students', addStudents);
 
-export default router;
+export default router;        

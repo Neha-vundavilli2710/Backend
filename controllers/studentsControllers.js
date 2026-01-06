@@ -1,6 +1,6 @@
 // const getStudents = (req, res) => {
 //     let stdData = {name: "aditya", roll: "1234"};
-//     res.send(200).json({data: stdData});
+//     res.status(200).json({data: stdData});
 // };
 // const addStudents = (req, res) => {
 //     res.status(201).json({message: "data added"});
@@ -8,9 +8,9 @@
 // export {getStudents, addStudents};  
 
 
-// import student from "../modules/studentsModels.js";
+// import student from "../modules/studentsModels.js"; 
 
-// const getStudentsDetails = async (req, res) => {
+// const getStudentsDetails = async (req, res) => { 
 //   try {
 //     const students = await student.find();
 //     return res.status(200).json({ data: students });
@@ -80,3 +80,4 @@ const addStudents = async (req, res) => {
 };
 
 export { getStudentsDetails, addStudents }; 
+

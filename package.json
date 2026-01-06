@@ -16,7 +16,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Neha-vundavilli2710/Backend/issues"
-  },
+  }, 
   "homepage": "https://github.com/Neha-vundavilli2710/Backend#readme",
   "dependencies": {
     "body-parser": "^2.2.1",
