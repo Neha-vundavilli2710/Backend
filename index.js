@@ -92,26 +92,32 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import studentRouter from './router/studentsRouters.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://nehavundavilli27_db_user:Neha%402706@cluster0.ewa7lea.mongodb.net/?retryWrites=true&w=majority";
+// const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://nehavundavilli27_db_user:Neha%402706@cluster0.ewa7lea.mongodb.net/?retryWrites=true&w=majority";
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("db connected"))
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
+// mongoose.connect(MONGO_URI)
+//   .then(() => console.log("db connected"))
+//   .catch((error) => {
+//     console.error("MongoDB connection error:", error);
     
-  });
+//   });
 
-app.use('/', studentRouter);
-app.get('/users', (req, res) => {
-    console.log("hello this is");
-    res.send("hello this is from backend");
-})
+// app.use('/', studentRouter);
+// app.get('/users', (req, res) => {
+//     console.log("hello this is");
+//     res.send("hello this is from backend");
+// })
+
+app.use(express.static(path.join(__dirname,"uploads")));
 
 app.listen(7007, () => {
     console.log("server running at port 7007")
