@@ -85,15 +85,34 @@
 
 
 
-const UploadFile = async(req,res) => {
-    try{
-        console.log(req.files)
-        return res.status(200).json(req.files)
-    }
-    catch(err){
-        console.log(err)
-        return res.status(500).json(err)
-    }
-}
+// const UploadFile = async(req,res) => {
+//     try{
+//         console.log(req.files)
+//         return res.status(200).json(req.files)
+//     }
+//     catch(err){
+//         console.log(err)
+//         return res.status(500).json(err)
+//     }
+// }
 
-export default { UploadFile };
+// export default { UploadFile };
+
+
+
+
+
+
+route.get('/send-mail',
+    async(req,res,next)=>{
+        try{
+            const decoded = JWT.verify(req.cookies.token,"!@#CCAfdv678678")
+            console.log(decoded)
+            next(); 
+        } 
+        catch(err){
+            return res.status(400).json("Token Expired")
+        } 
+    },
+FirstController.SendMail); 
+
